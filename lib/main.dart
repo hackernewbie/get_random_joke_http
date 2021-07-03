@@ -31,8 +31,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  var _jokeToShow = null;
+  var _jokeToShow;
   bool isProgressVisible = false;
 
   Future _showChuckNorrizJoke() async {
@@ -40,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var baseURL =
         'https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random';
 
-    var errorMsg = '';
+    var errorMsg;
 
     try {
       var reqRandomJoke = await http.get(Uri.parse(baseURL), headers: {
