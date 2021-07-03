@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future _getRandomJoke() async {
-    print('Getting random joke...');
+    /// This API was timing out at the time of writing the app
 
     var jokeApiURI = 'http://dad-jokes.p.rapidapi.com/random/joke';
     var errorMsg = '';
