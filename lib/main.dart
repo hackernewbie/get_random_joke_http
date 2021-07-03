@@ -71,16 +71,12 @@ class _MyHomePageState extends State<MyHomePage> {
       var randomJoke = await http.get(
         Uri.parse(jokeApiURI),
         headers: {
-          'X-RapidAPI-Key':
-              '7de0b03108msh40f3ca3303c2429p12ee5ajsn64ae9ec20b20',
+          'X-RapidAPI-Key': 'Your API KEY here',
           'X-RapidAPI-Host': 'dad-jokes.p.rapidapi.com',
         },
       );
 
       var response = json.decode(randomJoke.body)[0];
-
-      print(response);
-
       setState(() {
         _jokeToShow = response['setup'].toString();
       });
