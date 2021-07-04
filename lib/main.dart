@@ -12,19 +12,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: MyHomePage(title: 'Random Dad Jokes!'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -103,8 +102,18 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Center(
+          child: Text('Chuck Norris', 
+          style: TextStyle(
+            //color: Colors.deepPurpleAccent, 
+            fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        //backgroundColor: Colors.white,
+        elevation: 0.0,
       ),
       body: Center(
         child: Column(
@@ -122,34 +131,46 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(8),
-              child: _jokeToShow == null
-                  ? Text('Loading..')
-                  : Text(
-                      '$_jokeToShow',
-                      style: Theme.of(context).textTheme.headline6,
-                      textAlign: TextAlign.center,
-                    ),
+            DecoratedBox(
+              decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage("images/cn.jpeg"), fit: BoxFit.cover),
+              ),
+              child: Card(
+                shadowColor: Colors.deepPurpleAccent,
+                elevation: 0.2,
+                child: InkWell(
+                  child: Padding(
+                    padding: EdgeInsets.all(25),
+                    child: _jokeToShow == null
+                        ? Text('Loading...')
+                        : Text(
+                            '$_jokeToShow',
+                            style: Theme.of(context).textTheme.subtitle1,
+                            textAlign: TextAlign.center,
+                          ),
+                  ),
+                  onTap: _loadProgress,
+                ),
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: Container(
-        height: 100.0,
-        width: 100.0,
-        child: FittedBox(
-          child: FloatingActionButton(
-            onPressed: _loadProgress,
-            //child: Icon(Icons.ac_unit_outlined),
-            child: Text(
-              'Get Joke!',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 10.0),
-            ),
-          ),
-        ),
-      ),
+      // floatingActionButton: Container(
+      //   height: 100.0,
+      //   width: 100.0,
+      //   child: FittedBox(
+      //     child: FloatingActionButton(
+      //       onPressed: _loadProgress,
+      //       //child: Icon(Icons.ac_unit_outlined),
+      //       child: Text(
+      //         'Get Joke!',
+      //         textAlign: TextAlign.center,
+      //         style: TextStyle(fontWeight: FontWeight.w700, fontSize: 10.0),
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
