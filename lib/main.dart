@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -117,45 +118,62 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Visibility(
-              maintainSize: true,
-              maintainAnimation: true,
-              maintainState: true,
-              visible: isProgressVisible,
-              child: Container(
-                //margin: EdgeInsets.only(top: 50, bottom: 30),
-                child: CircularProgressIndicator(
-                  color: Colors.deepPurpleAccent,
-                ),
-              ),
-            ),
-            DecoratedBox(
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage("images/cn.jpeg"), fit: BoxFit.cover),
-              ),
-              child: Card(
-                shadowColor: Colors.deepPurpleAccent,
-                elevation: 0.2,
-                child: InkWell(
-                  child: Padding(
-                    padding: EdgeInsets.all(25),
-                    child: _jokeToShow == null
-                        ? Text('Loading...')
-                        : Text(
-                            '$_jokeToShow',
-                            style: Theme.of(context).textTheme.subtitle1,
-                            textAlign: TextAlign.center,
-                          ),
+            Container(
+              width: double.infinity,
+              height: 225.0,
+              decoration: new BoxDecoration(
+                image: new DecorationImage(
+                  image: new ExactAssetImage('assets/images/cn.jpeg'),
+                  fit: BoxFit.contain,
                   ),
-                  onTap: _loadProgress,
                 ),
               ),
-            ),
-          ],
+              SizedBox(height: 10,),
+              Center(
+                child: Visibility(
+                    maintainSize: true,
+                    maintainAnimation: true,
+                    maintainState: true,
+                    visible: isProgressVisible,
+                    child: Container(
+                      //margin: EdgeInsets.only(top: 50, bottom: 30),
+                      child: CircularProgressIndicator(
+                        color: Colors.deepPurpleAccent,
+                      ),
+                    ),
+                  ),
+              ),    
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                Center(
+                  child: InkWell(
+                    onTap: _loadProgress,
+                      child: Container(
+                        // shadowColor: Colors.deepPurpleAccent,
+                        // elevation: 0.2,
+                        child: Padding(
+                          padding: EdgeInsets.all(25),
+                          child: _jokeToShow == null
+                              ? Text('Loading...',textAlign: TextAlign.center)
+                              : Text(
+                                  '$_jokeToShow',
+                                  style: Theme.of(context).textTheme.subtitle1,
+                                  textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                ),
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
       // floatingActionButton: Container(
       //   height: 100.0,
       //   width: 100.0,
