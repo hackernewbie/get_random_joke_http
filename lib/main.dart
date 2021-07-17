@@ -106,10 +106,11 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Center(
-          child: Text('Chuck Norris', 
-          style: TextStyle(
-            //color: Colors.deepPurpleAccent, 
-            fontWeight: FontWeight.w600,
+          child: Text(
+            'Chuck Norris!',
+            style: TextStyle(
+              //color: Colors.deepPurpleAccent,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
@@ -128,52 +129,54 @@ class _MyHomePageState extends State<MyHomePage> {
                 image: new DecorationImage(
                   image: new ExactAssetImage('assets/images/cn.jpeg'),
                   fit: BoxFit.contain,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: Visibility(
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                visible: isProgressVisible,
+                child: Container(
+                  //margin: EdgeInsets.only(top: 50, bottom: 30),
+                  child: CircularProgressIndicator(
+                    color: Colors.deepPurpleAccent,
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
-              Center(
-                child: Visibility(
-                    maintainSize: true,
-                    maintainAnimation: true,
-                    maintainState: true,
-                    visible: isProgressVisible,
-                    child: Container(
-                      //margin: EdgeInsets.only(top: 50, bottom: 30),
-                      child: CircularProgressIndicator(
-                        color: Colors.deepPurpleAccent,
-                      ),
-                    ),
-                  ),
-              ),    
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
                 Center(
                   child: InkWell(
                     onTap: _loadProgress,
-                      child: Container(
-                        // shadowColor: Colors.deepPurpleAccent,
-                        // elevation: 0.2,
-                        child: Padding(
-                          padding: EdgeInsets.all(25),
-                          child: _jokeToShow == null
-                              ? Text('Loading...',textAlign: TextAlign.center)
-                              : Text(
-                                  '$_jokeToShow',
-                                  style: Theme.of(context).textTheme.subtitle1,
-                                  textAlign: TextAlign.center,
-                          ),
-                        ),
+                    child: Container(
+                      // shadowColor: Colors.deepPurpleAccent,
+                      // elevation: 0.2,
+                      child: Padding(
+                        padding: EdgeInsets.all(25),
+                        child: _jokeToShow == null
+                            ? Text('Loading...', textAlign: TextAlign.center)
+                            : Text(
+                                '$_jokeToShow',
+                                style: Theme.of(context).textTheme.subtitle1,
+                                textAlign: TextAlign.center,
+                              ),
                       ),
                     ),
+                  ),
                 ),
-                ],
-              ),
-            ],
-          ),
+              ],
+            ),
+          ],
         ),
+      ),
       // floatingActionButton: Container(
       //   height: 100.0,
       //   width: 100.0,
